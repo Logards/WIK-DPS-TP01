@@ -9,7 +9,7 @@ cd WIK-DPS-TP01
 
 2: Run project on port 8080
 ```bash
-  cargo run
+cargo run
 ```
 
 If you want to run on another port, you can create an environment variable called PING_LISTEN_PORT with the desired port.
@@ -17,6 +17,6 @@ If you want to run on another port, you can create an environment variable calle
 Example For Linux
 
 ```bash
-  export PORT=8081
-  cargo run
+export PORT=8081
+cargo run
 ```
