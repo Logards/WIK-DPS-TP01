@@ -17,6 +17,6 @@ If you want to run on another port, you can create an environment variable calle
 Example For Linux
 
 ```bash
-export PORT=8081
+export PING_LISTEN_PORT=8081
 cargo run
 ```
