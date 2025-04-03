@@ -19,7 +19,7 @@ async fn main() -> std::io::Result<()> {
     };
     println!("Starting server on port {}", port);
     match HttpServer::new(|| App::new().route("/ping", web::get().to(ping), ).default_service(web::route().to(not_found)))
-        .bind(("127.0.0.1", port))
+        .bind(("0.0.0.0", port))
     {
         Ok(server) => server.run().await,
         Err(e) => {

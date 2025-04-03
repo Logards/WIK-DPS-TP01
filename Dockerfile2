@@ -1,0 +1,15 @@
+FROM rust:alpine AS build
+WORKDIR /app
+COPY src ./src/
+COPY Cargo.toml Cargo.lock ./
+RUN apk add --no-cache musl-dev && cargo build --release
+
+FROM alpine:latest
+WORKDIR /app
+COPY --from=build /app/target/release/WIK-DPS-TP01 ./app
+RUN addgroup -g 1000 appgroup && \
+    adduser -u 1000 -G appgroup -s /bin/sh -D appuser && \
+    chown -R appuser:appgroup /app
+USER appuser
+ENV PING_LISTEN_PORT="8080"
+CMD ["./app"]
