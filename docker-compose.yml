@@ -1,0 +1,30 @@
+services:
+  rust-api-compose:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    restart: always
+    deploy:
+      replicas: 4
+    networks:
+      - rproxy
+
+  rproxy:
+    image: nginx:latest
+    container_name: rproxy
+    restart: always
+    networks:
+      rproxy:
+        aliases:
+          - rproxy
+    ports:
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - ./rust-api.conf:/etc/nginx/conf.d/rust-api.conf:ro
+    depends_on:
+      - rust-api-compose
+
+networks:
+  rproxy:
+    external: true

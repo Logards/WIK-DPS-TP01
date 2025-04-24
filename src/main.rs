@@ -40,6 +40,7 @@ async fn ping(req: HttpRequest) -> HttpResponse {
         })
         .collect();
 
+
     HttpResponse::Ok()
         .content_type("application/json")
         .json(headers)
